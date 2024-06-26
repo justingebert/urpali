@@ -1,0 +1,17 @@
+{
+    "name": "URPALI",
+    "short_name": "urpali",
+    "icons": [
+        {
+          "src": "/icons/web/icon-512-maskable.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ],
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait"
+  }
