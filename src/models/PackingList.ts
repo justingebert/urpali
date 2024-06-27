@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+import mongoose from "mongoose";
 
-// Define the Item schema
-const itemSchema = new Schema({
+
+const itemSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -24,7 +23,7 @@ const itemSchema = new Schema({
 });
 
 
-const packingListSchema = new Schema({
+const packingListSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -32,14 +31,24 @@ const packingListSchema = new Schema({
   description: {
     type: String,
   },
+  season: {
+    type: String,
+    enum: ['Summer', 'Winter', 'Spring', 'Autumn'],
+    required: true,
+  },
+  tripType: {
+    type: String,
+    enum: ['Vacation', 'Business Trip', 'Adventure', 'Other'],
+    required: true,
+  },
+  items: [itemSchema], 
   createdDate: {
     type: Date,
     default: Date.now,
   },
-  items: [itemSchema], // Embed the item schema as an array
 });
 
-// Create the models
-const PackingList = mongoose.model('PackingList', packingListSchema);
 
-module.exports = PackingList;
+const PackingList = mongoose.models.PackingList || mongoose.model('PackingList', packingListSchema);
+
+export default PackingList;
