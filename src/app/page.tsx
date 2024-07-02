@@ -1,8 +1,24 @@
-import Image from "next/image";
+'use client';
+
 import { Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { use, useEffect, useState } from "react";
 
 export default function Home() {
+  const [packingLists, setPackingLists] = useState([]);
+  
+  useEffect(() => {
+    fetchPackingLists();
+  }, []);
+
+  async function fetchPackingLists() {
+    const response = await fetch("/api/packinglist");
+    const data = await response.json();
+    setPackingLists(data.packingLists);
+  }
+  
+
+
   return (
     <main className="flex flex-col items-center justify-between p-24">
         <div>URPALI</div>
